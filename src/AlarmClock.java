@@ -1,3 +1,4 @@
+import java.awt.*;
 import java.time.LocalTime;
 
 public class AlarmClock implements Runnable{
@@ -10,16 +11,25 @@ public class AlarmClock implements Runnable{
 
     @Override
     public void run(){
-        LocalTime now = LocalTime.now();
 
-        while (now.isBefore(alarmTime)) {
+        while (LocalTime.now().isBefore(alarmTime)) {
             try {
                 Thread.sleep(1000);
-            } catch (InterruptedException e) {
+
+                LocalTime now  = LocalTime.now();
+
+                System.out.printf("\r%02d:%02d:%02d",
+                        now.getHour(),
+                        now.getMinute(),
+                        now.getSecond());
+            }
+            catch (InterruptedException e) {
                 System.out.println("THread is disturbed.");
             }
 
         }
+        System.out.println("\n**ALARM NOISES**");
+        Toolkit.getDefaultToolkit().beep();
     }
 
 }
