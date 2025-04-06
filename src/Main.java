@@ -8,6 +8,7 @@ public class Main {
         Scanner scan = new Scanner(System.in);
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("HH:mm:ss");
         LocalTime alarmTime = null;
+        String filePath = "iphone_alarm.wav";
 
         while (alarmTime == null){
             try{
@@ -22,11 +23,9 @@ public class Main {
             }
         }
 
-        AlarmClock alarmClock = new AlarmClock(alarmTime);
+        AlarmClock alarmClock = new AlarmClock(alarmTime , filePath, scan);
         Thread alarmThread = new Thread(alarmClock);
         alarmThread.start();
 
-
-        scan.close();
     }
 }
